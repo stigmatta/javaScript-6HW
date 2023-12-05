@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <script>
+            class Car{
+                #manufacturer="";
+                #model="";
+                #year=0;
+                #average_speed=0;
+                constructor(manufacturer,model,year,average_speed){
+                    if(typeof manufacturer==='string'){
+                        this.#manufacturer=manufacturer;
+                    }
+                    if(typeof model==='string'){
+                        this.#model=model;
+                    }
+                    if(typeof year==='number'){
+                        this.#year=year;
+                    }
+                    if(typeof average_speed==='number'){
+                        this.#average_speed=average_speed;
+                    }
+                }
+                get manufacturer(){
+                    return this.#manufacturer;
+                }
+                set manufacturer(value){
+                    if(typeof value === 'string'){
+                        this.#manufacturer=value;
+                    }
+                }
+                get model(){
+                    return this.#model;
+                }
+                set model(value){
+                    if(typeof value === 'string'){
+                        this.#model=value;
+                    }
+                }
+                get year(){
+                    return this.#year;
+                }
+                set year(value){
+                    if (typeof value==='number') {
+                        this.#year=value;
+                    }
+                }
+                get average_speed(){
+                    return this.#average_speed;
+                }
+                set average_speed(value){
+                    if(typeof value === 'number'){
+                        this.#average_speed=value;
+                    }
+                }
+                show(){
+                    console.log(`Manufacturer: ${this.#manufacturer}, Model: ${this.#model}, Year: ${this.#year}, Average Speed: ${this.#average_speed}`);
+                }
+                timeCalculation(distance){
+                    let time = 0;
+                    while (distance-this.average_speed > 0) {
+                        if (time % 4 === 0) {
+                            time++;
+                        }
+                        distance -= this.average_speed;
+                        time++;
+                    }
+                    return time;
+                }
+            }
+            let car1=new Car('Tesla','S',2020,60);
+            car1.show();
+            console.log(car1.timeCalculation(500));
+        </script>
+    </body>
+</html>

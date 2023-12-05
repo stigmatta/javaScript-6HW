@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <script>
+            class Fraction{
+                #numerator=0;
+                #denominator=0;
+                constructor(numerator, denominator) {
+                    if (typeof numerator === 'number') {
+                        this.#numerator = numerator;
+                    }
+                    if (typeof denominator === 'number' && denominator !== 0) {
+                        this.#denominator = denominator;
+                    }
+                }
+                get numerator(){
+                    return this.#numerator;
+                }
+                get denominator(){
+                    return this.#denominator;
+                }
+                show(){
+                    console.log(`${this.#numerator} / ${this.#denominator}`);
+                }
+                fractionSum(frac){
+                    let commonDenominator = this.#denominator * frac.denominator;
+                    let numerator1 = this.#numerator * frac.denominator;
+                    let numerator2 = frac.numerator * this.#denominator;
+                    let sumNumerator = numerator1 + numerator2;
+                    return new Fraction(sumNumerator,commonDenominator);
+                }
+                fractionMinus(frac){
+                    let commonDenominator = this.#denominator * frac.denominator;
+                    let numerator1 = this.#numerator * frac.denominator;
+                    let numerator2 = frac.numerator * this.#denominator;
+                    let minNumerator = numerator1 - numerator2;
+                    return new Fraction(minNumerator,commonDenominator);
+                }
+                fractionMultiplication(frac){
+                    let commonDenominator=this.#denominator*frac.denominator;
+                    let multiNumerator = this.#numerator*frac.numerator;
+                    return new Fraction(multiNumerator,commonDenominator);
+                }
+                fractionDivide(frac){
+                    let newNumerator = this.#numerator*frac.denominator;
+                    let newDenomitator = this.#denominator*frac.numerator;
+                    return new Fraction(newNumerator,newDenomitator);
+                }
+                fractionSimplify(){
+                    let common=0,max =this.#numerator>this.#denominator?this.#numerator:this.#denominator;
+                    for(let i = 2;i<max;i++){
+                        if(this.#numerator%i==0 && this.#denominator%i==0)
+                            common=i;
+                    }
+                    if(!common)
+                        return;
+                    this.#numerator/=common;
+                    this.#denominator/=common;
+                }
+            }
+           
+            fraction1 = new Fraction(1,3);
+            fraction2=new Fraction(1,2);
+            fraction3 = fraction1.fractionSum(fraction2);
+            fraction3.show();
+            fraction3 = fraction1.fractionMinus(fraction2);
+            fraction3.show();
+            fraction3 = fraction1.fractionMultiplication(fraction2);
+            fraction3.show();
+            fraction3 = fraction1.fractionDivide(fraction2);
+            fraction3.show();
+            fraction4 = new Fraction(6,8);
+            fraction4.fractionSimplify();
+            fraction4.show();
+        </script>
+    </body>
+</html>

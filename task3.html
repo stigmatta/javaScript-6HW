@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <script>
+            class Time{
+                #hours=0;
+                #minutes=0;
+                #seconds=0;
+                constructor(hours,minutes,seconds){
+                    if(hours<23)
+                        this.#hours = hours;
+                    else
+                        this.#hours=0;
+                    if(minutes<59)
+                        this.#minutes = minutes;
+                    else
+                        this.#hours=0;
+                    if(seconds<59)
+                        this.#seconds = seconds;
+                    else
+                        this.#seconds=0;
+                }
+                show(){
+                    let string="";
+                    if(this.#hours<10)
+                        string+=0;
+                    string += this.#hours+':';
+                    if(this.#minutes<10)
+                        string+=0;
+                    string += this.#minutes+':';
+                    if(this.#seconds<10)
+                        string+=0;
+                    string+=this.#seconds;
+                    console.log(`${string}`);
+                }
+                addSeconds(newSeconds){
+                    while(newSeconds>0){
+                        if(this.#seconds<59)
+                            this.#seconds++;
+                        else{
+                            this.#seconds=0;
+                            if(this.#minutes<59)
+                                this.#minutes++;
+                            else{
+                                this.#minutes=0;
+                                if(this.#hours<23)
+                                    this.#hours++;
+                                else
+                                    this.#hours=0;
+                            }
+                        }
+                        newSeconds--;
+                    }
+                }
+                addMinutes(newMinutes){
+                    while(newMinutes>0){
+                        if(this.#minutes<59){
+                            this.#minutes++;
+                        }
+                        else{
+                            this.#minutes=0;
+                            if(this.#hours<23)
+                                this.#hours++;
+                            else
+                                this.#hours=0;
+                        }
+                        newMinutes--;
+                    }
+                }
+                addHours(newHours){
+                    while(newHours>0){
+                        if(this.#hours<23)
+                            this.#hours++;
+                        else
+                            this.#hours=0;
+                        newHours--;
+                    }
+                }
+            }
+
+            date1 = new Time(3,2,46);
+            date1.show();
+            date1.addSeconds(68);
+            date1.show();
+            date1.addMinutes(70);
+            date1.show();
+            date1.addHours(35);
+            date1.show();
+        </script>
+    </body>
+</html>
